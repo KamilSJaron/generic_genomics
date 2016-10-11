@@ -13,6 +13,11 @@ if len(sys.argv) == 3:
 else:
     half_of_genome = sum(lengths) / 2
 
+if(half_of_genome > sum(lengths)):
+    print("Half of the specified genome length:", half_of_genome)
+    print("is greater than total sum of sequences in fasta: ", sum(lengths))
+    sys.exit()
+
 cumsum = 0
 L50 = 0
 
