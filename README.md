@@ -26,4 +26,3 @@ all excutible scripts are freely in the folder with description in this README. 
 
 - getNX(x, NX, genome_size) where x is vector of contig / scaffold lengths, NX is a X to be computed (or vector of NXs). If genome size is not provided it is computed as sum of all lengths
 
-count-errors.py depth2depth_per_contig.py fasta2extract_by_header.py fasta2extract_by_list_of_headers.py fasta2extract_by_nt_range.py fasta2fasta_length_filtering.py fasta2genomic_stats.py fasta2lengths.py fasta2nameslengths.py fastq2fasta_length_filtering.py gtk2cds.py
