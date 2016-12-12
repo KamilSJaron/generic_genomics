@@ -8,6 +8,7 @@ all excutible scripts are freely in the folder with description in this README. 
 
 ### executible scripts
 
+- `bam2extract_by_list_of_headers.py` - prints a subset (sam) of headers from bam; usually used with `... | samtools -bh - >`
 - `depth2depth_per_contig.py <file.depth>` - converts depth computed by samtools depth
 - `depth2depth_per_contig.awk` - does completely same thing, I just forgot that I wrote python script already, need to do a speed test to chose which one to keep
 - `fasta2extract_by_header.py <file.fasta> <seqname>` - exrect a sequence of <seqname> name from fasta file
