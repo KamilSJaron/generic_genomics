@@ -8,16 +8,12 @@ for seq_record in SeqIO.parse(sys.argv[1], "fasta"):
 
 total_sum = sum(lengths)
 numer_of_records = len(lengths)
-half_of_genome = total_sum / 2 # if third argument was not specified
 tenth_of_sequences = total_sum / 10
 
 if len(sys.argv) >= 3:
     half_of_genome = int(sys.argv[2]) / 2
-
-if(half_of_genome > total_sum):
-    print("half of the specified genome length:", half_of_genome)
-    print("is greater than total sum of sequences in fasta: ", total_sum)
-    sys.exit()
+else:
+    half_of_genome = total_sum / 2
 
 lengths.sort(reverse=True)
 
@@ -29,6 +25,7 @@ X = 1
 cumsum = 0
 LX = 0
 NG50 = 0
+LG50 = 0
 
 for seq_len in lengths:
     cumsum += seq_len
