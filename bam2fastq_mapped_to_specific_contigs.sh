@@ -21,7 +21,7 @@ R2=$4
 # get list of reads
 samtools view $bam | grep -vf $list | cut -f 1 | uniq > $keep
 
-grep -A 3 -f $keep $R1 > $(basename $R1 .fq)_filtered_bash.fq
-grep -A 3 -f $keep $R2 > $(basename $R2 .fq)_filtered_bash.fq
+grep -A 3 -f $keep $R1 | grep -v "^--$" > $(basename $R1 .fq)_filtered_bash.fq
+grep -A 3 -f $keep $R2 | grep -v "^--$" > $(basename $R2 .fq)_filtered_bash.fq
 
 rm $keep

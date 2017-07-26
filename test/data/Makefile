@@ -1,8 +1,8 @@
 # five_scaffolds.fa
 
 REF_DATA := five_scaffolds.fa.bwt
-TINY_DATA := ten_reads_R1.fq ten_reads_map.bam
-MODERATE_DATA := 20x_reads_map.bam 20x_reads_R1.fq.gz
+TINY_DATA := ten_reads_R1.fq ten_reads_map.bam ten_reads_map.bam.bai
+MODERATE_DATA := 20x_reads_R1.fq.gz 20x_reads_map.bam 20x_reads_map.bam.bai
 
 .PHONY : all
 all : $(REF_DATA) $(TINY_DATA) $(MODERATE_DATA)
@@ -24,6 +24,8 @@ ten_reads_map.bam : five_scaffolds.fa.bwt ten_reads_R1.fq
 	bwa mem five_scaffolds.fa 20x_reads_R1.fq.gz 20x_reads_R2.fq.gz | samtools sort -T sort_temp -O bam - > $@
 
 #ten_reads_map.bam
+%.bam.bai : %.bam
+	samtools index $<
 
 PARAM := -1 125 -2 125 -d 350 -s 30 -r 0.001 -R 0.05 -X 0.3 -h
 
