@@ -1,10 +1,10 @@
 # generic_genomics
 
-small scripts, functions or bits of code for parsing genomics data. I am not entirely sure about origin of all the scripts and some of them are very likely to contains bits of StackOverflow or code of my labmates, namely Andrea.
+small scripts, functions, tiny testing dataset or bits of code for parsing genomics data. I am not entirely sure about origin of all the scripts and some of them are very likely to contains bits of StackOverflow or code of my labmates, namely Andrea.
 
 ## Content
 
-all excutible scripts are freely in the folder with description in this README. R functions are saved one per file in folder R_scripts.
+all excutible scripts are freely in the folder with description in this README. R functions are saved one per file in folder `R_scripts`.
 
 ### executible scripts
 
@@ -25,5 +25,14 @@ all excutible scripts are freely in the folder with description in this README. 
 
 ### R functions
 
-- getNX(x, NX, genome_size) where x is vector of contig / scaffold lengths, NX is a X to be computed (or vector of NXs). If genome size is not provided it is computed as sum of all lengths
+- `getNX(x, NX, genome_size)` where x is vector of contig / scaffold lengths, NX is a X to be computed (or vector of NXs). If genome size is not provided it is computed as sum of all lengths
 
+### Dataset
+
+a 5 scaffold reference (`five_scaffolds.fa`) are saved in folder `test`. Using `make` you can generate a testing dataset consisting of
+
+- 20x coverage pair-end reads generated from the reference for reasonable variant callings (`fq.gz`)
+- 10 pair-reads for control of coordinates / nt sequences (`fq`)
+- mapped reads (both read files) using bwa-mem (`.bam`)
+
+this should serve for sanity checks, maybe latter on they will be integrated in for more formal tests of these scripts.
