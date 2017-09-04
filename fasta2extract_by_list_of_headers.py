@@ -10,8 +10,7 @@ header_set = set(line.strip() for line in open(sys.argv[2]))
 for seq_record in ffile:
     try: 
         header_set.remove(seq_record.name)
-        print(">",seq_record.name,sep='')
-        print(seq_record.seq)
+        print(seq_record.format("fasta"))
     except KeyError:
         continue
 if len(header_set) != 0:

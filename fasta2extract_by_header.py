@@ -9,7 +9,6 @@ Cname = sys.argv[2]
 
 for seq_record in ffile:
     if(seq_record.name == Cname):
-        print(">",seq_record.name,sep='')
-        print(seq_record.seq)
+	print(seq_record.format("fasta"))
         sys.exit()
 print('Did not found sequence of input name');

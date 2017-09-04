@@ -6,6 +6,5 @@ treshold = int(sys.argv[2])
 
 for seq_record in ffile:
     if(len(seq_record) > treshold):
-        print(">"+seq_record.name)
-        print(seq_record.seq)
+        print(seq_record.format("fasta"))
 
