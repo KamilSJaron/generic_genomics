@@ -34,8 +34,9 @@ for seq_len in lengths:
         NG50 = seq_len
         LG50 = LX
     if cumsum > tenth_of_sequences * X:
-        print("L" + str(X) + "0 and N" + str(X) + "0 are: " + str(LX) + "\t" + str(seq_len))
-        if X == 8:
+        if X <= 8:
+            print("L" + str(X) + "0 and N" + str(X) + "0 are: " + str(LX) + "\t" + str(seq_len))
+        if X >= 8 and NG50 != 0:
             break;
         X += 1;
 
