@@ -59,7 +59,6 @@ def filterBoth(b, refList):
 def keepOne(b, refList):
     """
     KEEP only cases where ONE of mates align to a one of listed scaffolds/contigs
-    Additionally exclude secondary/supplemental alignments
     """
     if b.flag & 2304:
         return True
@@ -72,7 +71,6 @@ def keepOne(b, refList):
 def keepBoth(b, refList):
     """
     KEEP only cases where BOTH of mates align to any of listed scaffolds/contigs
-    Additionally exclude secondary/supplemental alignments
     """
     if b.flag & 2304:
         return True
@@ -139,13 +137,13 @@ def main(args):
     of1 = gzip.GzipFile("{}_R1.fastq.gz".format(args.outputPrefix), "w")
     of2 = gzip.GzipFile("{}_R2.fastq.gz".format(args.outputPrefix), "w")
 
-    if keep:
-        if both :
+    if args.keep:
+        if args.both :
             filterAlignment = keepBoth
         else :
             filterAlignment = keepOne
     else :
-        if both :
+        if args.both :
             filterAlignment = filterBoth
         else :
             filterAlignment = filterOne
