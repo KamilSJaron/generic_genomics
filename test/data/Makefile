@@ -27,14 +27,14 @@ ten_reads_map.bam : five_scaffolds.fa.gz.bwt ten_reads_R1.fq
 %.bam.bai : %.bam
 	samtools index $<
 
-PARAM := -1 125 -2 125 -d 350 -s 30 -r 0.001 -R 0.05 -X 0.3 -h
+PARAM := -1 125 -2 125 -r 0.001 -R 0.05 -X 0.3 -h
 
 ten_reads_R1.fq : five_scaffolds.fa.gz
 	echo ">one_scaffold" > scf_temp
 	gunzip -c $< | grep -v ">" >> scf_temp
-	wgsim -N 10 $(PARAM) -s 170725 scf_temp ten_reads_R{1,2}.fq > ten_reads_variants.bed
+	wgsim -N 10 $(PARAM) -d 30000 -s 1000000 -S 910401 scf_temp ten_reads_R{1,2}.fq > ten_reads_variants.bed
 	rm scf_temp
 
 20x_reads_R1.fq.gz : five_scaffolds.fa.gz
-	wgsim -N 300000 $(PARAM) -s 170726 $< 20x_reads_R{1,2}.fq > 20x_variants.bed
+	wgsim -N 300000 $(PARAM) -S 170726 $< 20x_reads_R{1,2}.fq > 20x_variants.bed
 	gzip 20x_reads_R1.fq 20x_reads_R2.fq

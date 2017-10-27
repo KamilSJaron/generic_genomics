@@ -16,9 +16,9 @@ def parseArgs():
     parser.add_argument("refList", help="A file containing a list of contigs/scaffolds/chromosomes to keep/filter (one per line).")
     parser.add_argument("outputPrefix", help="The prefix for the output files. They will be names prefix_R1.fastq.gz and prefix_R2.fastq.gz")
 
-    parser.add_argument("--keep", action='store_const', const=False,
+    parser.add_argument("--keep", action='store_const', const=True, default=False,
                         help="if the List represents a set of contigs that should be kept, default is a set of contigs to be filtered.")
-    parser.add_argument("--both", action='store_const', const=False,
+    parser.add_argument("--both", action='store_const', const=True, default=False,
                         help="keep/filter if both in a pair are mapping to contigs in the list, default is to keep/filter if one of pair maps to contigs in the list.")
 
     return parser
