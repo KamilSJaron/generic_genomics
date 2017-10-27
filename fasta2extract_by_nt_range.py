@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
+
 import sys
-from Bio import SeqIO 
+from Bio import SeqIO
 
 def warning(*objs):
     print("WARNING: ", *objs, file=sys.stderr)

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 
 def warning(*objs):
@@ -9,13 +11,13 @@ last_entry = first_line[0]
 
 for depthline in open(sys.argv[1], "r"):
     depth_tab = depthline.split('\t')
-    
+
     if(depth_tab[0] != last_entry):
       print(last_entry, depth, sep = '\t')
       depth = int(depth_tab[2])
     else:
       depth += int(depth_tab[2])
-    
+
     last_size = int(depth_tab[1])
     last_entry = depth_tab[0]
 
