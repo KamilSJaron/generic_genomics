@@ -2,10 +2,18 @@
 
 import sys
 from Bio import SeqIO
+import gzip
 
 lengths = []
 
-for seq_record in SeqIO.parse(sys.argv[1], "fasta"):
+filename = sys.argv[1]
+
+if filename[-2:] == 'gz' :
+	handle = gzip.open(filename, "rt")
+else :
+	handle = open(filename, 'r')
+
+for seq_record in SeqIO.parse(handle, "fasta"):
     lengths.append(len(seq_record))
 
 total_sum = sum(lengths)
