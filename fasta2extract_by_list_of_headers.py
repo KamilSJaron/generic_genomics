@@ -2,11 +2,15 @@
 
 from Bio import SeqIO
 import sys
+import gzip
 
-def warning(*objs):
-    print("WARNING: ", *objs, file=sys.stderr)
+fasta_file = sys.argv[1]
 
-ffile = SeqIO.parse(sys.argv[1], "fasta")
+if fasta_file[-2:] == "gz":
+    ffile = SeqIO.parse(gzip.open(fasta_file, "rt"), "fasta")
+else :
+    ffile = SeqIO.parse(fasta_file, "fasta")
+
 header_set = set(line.strip() for line in open(sys.argv[2]))
 
 for seq_record in ffile:

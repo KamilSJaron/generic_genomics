@@ -2,11 +2,14 @@
 
 import sys
 from Bio import SeqIO
+import gzip
 
-def warning(*objs):
-    print("WARNING: ", *objs, file=sys.stderr)
+fasta_file = sys.argv[1]
 
-ffile = SeqIO.parse(sys.argv[1], "fasta")
+if fasta_file[-2:] == "gz":
+    ffile = SeqIO.parse(gzip.open(fasta_file, "rt"), "fasta")
+else :
+    ffile = SeqIO.parse(fasta_file, "fasta")
 
 #for seq_record in SeqIO.parse(sys.argv[1], "fasta"):
 total_length = 0;
