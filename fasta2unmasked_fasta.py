@@ -11,9 +11,7 @@ if fasta_file[-2:] == "gz":
 else :
     ffile = SeqIO.parse(fasta_file, "fasta")
 
-treshold = int(sys.argv[2])
-
 for seq_record in ffile:
-    if(len(seq_record) > treshold):
-        print(seq_record.format("fasta"))
+    seq_record.seq = seq_record.seq.upper()
+    print(seq_record.format("fasta"))
 
