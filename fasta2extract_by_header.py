@@ -14,6 +14,6 @@ else :
 
 for seq_record in ffile:
     if(seq_record.name == Cname):
-	print(seq_record.format("fasta"))
+        print(seq_record.format("fasta"))
         sys.exit()
 print('Did not found sequence of input name');
