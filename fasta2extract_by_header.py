@@ -14,7 +14,6 @@ _open = partial(gzip.open, mode='rt') if encoding == 'gzip' else open
 with _open(fasta_file) as ffile:
     for seq_record in SeqIO.parse(ffile, 'fasta'):
         if(seq_record.name == Cname):
-    	print(seq_record.format("fasta"))
+            print(seq_record.format("fasta"))
             sys.exit()
     print('Did not found sequence of input name');
-
