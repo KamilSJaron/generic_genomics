@@ -2,18 +2,18 @@
 
 import sys
 from Bio import SeqIO
+from mimetypes import guess_type
 import gzip
 
 fasta_file = sys.argv[1]
 Cname = sys.argv[2]
 
-if fasta_file[-2:] == "gz":
-    ffile = SeqIO.parse(gzip.open(fasta_file, "rt"), "fasta")
-else :
-    ffile = SeqIO.parse(fasta_file, "fasta")
+encoding = guess_type(fasta_file)[1]
+_open = partial(gzip.open, mode='rt') if encoding == 'gzip' else open
 
-for seq_record in ffile:
-    if(seq_record.name == Cname):
-	print(seq_record.format("fasta"))
-        sys.exit()
-print('Did not found sequence of input name');
+with _open(fasta_file) as ffile:
+    for seq_record in SeqIO.parse(ffile, 'fasta'):
+        if(seq_record.name == Cname):
+            print(seq_record.format("fasta"))
+            sys.exit()
+    print('Did not found sequence of input name');

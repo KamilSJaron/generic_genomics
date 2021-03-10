@@ -1,4 +1,4 @@
-#!/bin/awk -f
+#!/usr/bin/env awk -f
 
 BEGIN { header = ""; sum = 0;}
 { 

@@ -2,18 +2,18 @@
 
 import sys
 from Bio import SeqIO
+from mimetypes import guess_type
 import gzip
 
 lengths = []
 filename = sys.argv[1]
 
-if filename[-2:] == 'gz' :
-	handle = gzip.open(filename, "rt")
-else :
-	handle = open(filename, 'r')
+encoding = guess_type(filename)[1]
+_open = partial(gzip.open, mode='rt') if encoding == 'gzip' else open
 
-for seq_record in SeqIO.parse(handle, "fasta"):
-    lengths.append(len(seq_record))
+with _open(filename) as ffile:
+    for seq_record in SeqIO.parse(ffile, 'fasta'):
+        lengths.append(len(seq_record))
 
 total_sum = sum(lengths)
 numer_of_records = len(lengths)
