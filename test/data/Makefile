@@ -36,5 +36,8 @@ ten_reads_R1.fq : five_scaffolds.fa.gz
 	rm scf_temp
 
 20x_reads_R1.fq.gz : five_scaffolds.fa.gz
-	wgsim -N 300000 $(PARAM) -S 170726 $< 20x_reads_R{1,2}.fq > 20x_variants.bed
+	wgsim -N 300000 $(PARAM) -S 170726 $< 20x_reads_R1.fq 20x_reads_R2.fq > 20x_variants.bed
 	gzip 20x_reads_R1.fq 20x_reads_R2.fq
+
+20x_reads_map.depth : 20x_reads_map.bam
+	samtools depth $< > $@
