@@ -2,16 +2,20 @@
 
 import sys
 from statistics import median
+import argparse
 
-def warning(*objs):
-    print("WARNING: ", *objs, file=sys.stderr)
+parser = argparse.ArgumentParser(description="from per base depth (samtools depth) calculate per scf coverage median")
+parser.add_argument('infile', nargs='?', type=argparse.FileType('r'), default=sys.stdin, help='depth file (default: stdandard input)')
+args = parser.parse_args()
 
-first_line = next(open(sys.argv[1], "r")).split('\t')
 depths = []
-last_entry = first_line[0]
+last_entry = ''
 
-for depthline in open(sys.argv[1], "r"):
+for depthline in args.infile:
     depth_tab = depthline.split('\t')
+
+    if last_entry == '':
+        last_entry = depth_tab[0]
 
     if(depth_tab[0] != last_entry):
       print(last_entry, median(depths), sep = '\t')
