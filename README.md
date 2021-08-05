@@ -25,6 +25,24 @@ all excutible scripts are freely in the folder with description in this README. 
 ### R functions
 
 - `getNX(x, NX, genome_size)` where x is vector of contig / scaffold lengths, NX is a X to be computed (or vector of NXs). If genome size is not provided it is computed as sum of all lengths
+- `fixed_bin_histogram(list_of_things_to_display, pal, bins)` - a wrapper function for R hist to plot mutiple overlaping histograms with fixed breaks for all of them
+
+```
+fixed_bin_histogram <- function(list_of_things_to_display, pal = NA, bins = 50,
+                                   xlim = NA, ylim = NA, probability = F,
+                                   border = F, default_legend = T,
+                                   main = '', xlab = 'Value', ylab = NA, ...)
+
+#   list_of_things_to_display - list of vectors to be plotted
+#   pal - pallete; their respective colours; got to have the same length
+#   bins - similar like breaks it defines the number of bars in the histogram; but unlike breaks it the number of displayed bars (considering xlim), the number is approximate, used breaks for all the histograms are pretty(xlim, bins)
+#   xlim, ylim - by defeault "all data and all hights", by changing xlim breaks get recalculated to keep "bins" relative the displayed number of bars
+#   probability - create non/normalised histograms with Frequency/Density on the y axis (make big difference for datasets of different sizes)
+#   default_legend - by detailt names of elements in the list, can be turned off by setting this value to F
+#   main - sets title
+#   xlab, ylab - sets label of the x axis (default: "Value"), for yaxis the defaut is Frequency/Density dependent on probability being = F/T
+#   ... - all addenitional paramaters will be passed to the "plot" function rendering all the histograms
+```
 
 ### Dataset
 
