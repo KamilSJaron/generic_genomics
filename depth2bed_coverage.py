@@ -9,7 +9,7 @@ from math import ceil
 import argparse
 
 def mean(lst):
-    return sum(lst) / len(lst)
+    return round(sum(lst) / len(lst), 4)
 
 def dynamic_window_size(scf_len, target_window_size):
     fewer_windows = floor(scf_len / target_window_size)
@@ -44,7 +44,7 @@ if args.w == 0 and args.dynamic:
 
 depths = []
 last_scf = ''
-start = 1
+start = 0
 end = 0
 window = args.w
 
@@ -60,7 +60,7 @@ for depthline in args.infile:
         last_scf = scf
         if args.dynamic:
             window = dynamic_window_size(scf_len, args.w)
-            end = window
+        end = window
 
     if(scf != last_scf):
         if args.median:
@@ -72,18 +72,17 @@ for depthline in args.infile:
         if args.dynamic:
             window = dynamic_window_size(scf_len, args.w)
         depths = [int(depth_tab[2])]
-        start = 1
+        start = 0
         end = min(window, scf_len)
 
     else:
         if len(depths) == window:
-            print(len(depths))
             if args.median:
                 cov = median(depths)
             else:
                 cov = mean(depths)
             stdout.write('{}\t{}\t{}\t{}\n'.format(last_scf, start, end, cov))
-            start = end + 1
+            start = end
             end = min(end + window, scf_len)
             depths = [int(depth_tab[2])]
         else:

@@ -11,6 +11,7 @@ all excutible scripts are freely in the folder with description in this README. 
 - `bam2extract_by_list_of_headers.py` - prints a subset (sam) of headers from bam; usually used with `... | samtools -bh - >`
 - `depth2depth_per_contig.py <file.depth>` - converts depth computed by samtools depth
 - `depth2depth_per_contig.awk` - does completely same thing, I just forgot that I wrote python script already, need to do a speed test to chose which one to keep
+- `depth2bed_coverage.py` - converts depth computed by samtools depth in coverages - per scaffold (default) or per window (fixed, or dynamically set). See `-h` for all the options. Example use: `samtools depth -aa test/data/ten_reads_map.bam | python depth2coverage.py -b test/data/ten_reads_map.bam --dynamic-window-size -w 100000 > test/data/coverages.bed`
 - `fasta2extract_by_header.py <file.fasta> <seqname>` - exrect a sequence of <seqname> name from fasta file
 - `fasta2lengths.py <file.fasta>` - computes lengths of seqeunces in fasta file
 - `gtk2cds.py <file.gtk> <file.fasta>` - extract coding seqeunces written in gtk file from fasta file (kallisto)
