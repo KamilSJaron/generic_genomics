@@ -29,3 +29,4 @@ if __name__ == "__main__":
             sys.stdout.write("".join(query_strings[0:min(args.n, len(query_strings))]))
             query_strings = [aln]
             query_name = aln.split('\t')[0]
+    sys.stdout.write("".join(query_strings[0:min(args.n, len(query_strings))]))
